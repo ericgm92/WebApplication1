@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class Gestores_Bd
+    public class Towns_Bd
     {
         [Key]
         public int id { get; set; }
-        public string ciudad { get; set; }
-        public string pais { get; set; }
-        public int poblacion { get; set; }
+        public string name { get; set; }
+        public string country { get; set; }
+        public int population { get; set; }
     }
 }

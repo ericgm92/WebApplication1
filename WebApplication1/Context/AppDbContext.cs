@@ -14,6 +14,6 @@ namespace WebApplication1.Context
             
         }
 
-        public DbSet<Gestores_Bd> gestores_bd { get; set; }    
+        public DbSet<Towns_Bd> towns_bd { get; set; }    
     }
 }

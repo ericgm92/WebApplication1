@@ -12,21 +12,21 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GestoresController : ControllerBase
+    public class TownsController : ControllerBase
     {
         private readonly AppDbContext context;
 
-        public GestoresController(AppDbContext context)
+        public TownsController(AppDbContext context)
         {
             this.context = context;
         }
-        // GET: api/<GestoresController>
+        // GET: api/<townsController>
         [HttpGet]
         public ActionResult Get()
         {
             try
             {
-                return Ok(context.gestores_bd.ToString());
+                return Ok(context.towns_bd.ToString());
 
             } catch (Exception ex)
             {
@@ -34,46 +34,46 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // GET api/<GestoresController>/5
-        [HttpGet("{id}", Name ="GetGestor")]
+        // GET api/<townsController>/5
+        [HttpGet("{id}", Name ="GetTown")]
         public ActionResult Get(int id)
         {
             try
             {
-                var gestor = context.gestores_bd.FirstOrDefault(g => g.id == id);
-                return Ok(gestor);
+                var town = context.towns_bd.FirstOrDefault(g => g.id == id);
+                return Ok(town);
             } catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        // POST api/<GestoresController>
+        // POST api/<townsController>
         [HttpPost]
-        public ActionResult Post([FromBody]Gestores_Bd gestor)
+        public ActionResult Post([FromBody]Towns_Bd town)
         {
             try
             {
-                context.gestores_bd.Add(gestor);
+                context.towns_bd.Add(town);
                 context.SaveChanges();
-                return CreatedAtRoute("GetGestor", new { id = gestor.id }, gestor);
+                return CreatedAtRoute("GetTown", new { id = town.id }, town);
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT api/<GestoresController>/5
+        // PUT api/<townsController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Gestores_Bd gestor)
+        public ActionResult Put(int id, [FromBody] Towns_Bd town)
         {
             try
             {
-                if (gestor.id == id)
+                if (town.id == id)
                 {
-                    context.Entry(gestor).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.Entry(town).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     context.SaveChanges();
-                    return CreatedAtRoute("GetGestor", new { id = gestor.id }, gestor);
+                    return CreatedAtRoute("GetTown", new { id = town.id }, town);
                 }
                 else
                 {
@@ -87,16 +87,16 @@ namespace WebApplication1.Controllers
             }
         }
 
-        // DELETE api/<GestoresController>/5
+        // DELETE api/<townsController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             try
             {
-                var gestor = context.gestores_bd.FirstOrDefault(g => g.id == id);
-                if (gestor != null)
+                var town = context.towns_bd.FirstOrDefault(g => g.id == id);
+                if (town != null)
                 {
-                    context.gestores_bd.Remove(gestor);
+                    context.towns_bd.Remove(town);
                     context.SaveChanges();
                     return Ok(id);
                 }
